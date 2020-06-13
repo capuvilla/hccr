@@ -1,6 +1,15 @@
 <template>
-  <q-page class="bg-image">
-    LOGIN
+  <q-page class="bg-grey-3 text-white">
+    <q-img
+      class="absolute-bottom-left"
+      src="statics/img/fundo.jpg"
+      spinner-color="white"
+    />
+    <q-page class="flex flex-center">
+      <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="q-gutter-md">
+        <img alt="Meu Trecho" src="statics/img/logo.png">
+      </form>
+    </q-page>
   </q-page>
 </template>
 
@@ -10,22 +19,8 @@ export default {
 }
 </script>
 
-<style>
-  .bg-image{
-      position: relative;
-      background-color: #000;
-  }
-  .bg-image::before{
-    content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    opacity: 0.5;
-    background: url('/statics/img/fundo.jpg') no-repeat center center;
-    background-size: cover;
-  }
+<style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
 </style>
