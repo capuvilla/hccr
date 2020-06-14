@@ -47,7 +47,7 @@
         <q-btn
           class='glossy'
           color='deep-orange'
-          label='PRÓXIMO'
+          label='ATUALIZAR DADOS'
           @click="onSubmit"
           style="width: 40%; letter-spacing: 1.25px; font-size: 14px; line-height: 16px; font-weight: 600;"
         />

@@ -11,10 +11,13 @@ const routes: RouteConfig[] = [
     ]
   },
   {
-    path: '/truck',
-    component: () => import('layouts/MainLayoutAll.vue'),
+    path: '/',
+    component: () => import('layouts/MainLogin.vue'),
     children: [
-      { path: '', component: () => import('pages/truck/Truck.vue') }
+      { path: 'truck', component: () => import('pages/truck/Truck.vue') },
+      { path: 'agradece', component: () => import('pages/point/Agradece.vue') },
+      { path: 'verde', component: () => import('pages/point/Agradece.vue') },
+      { path: 'vermelho', component: () => import('pages/point/Agradece.vue') }
     ]
   },
   {

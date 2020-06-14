@@ -28,6 +28,67 @@
             color="deep-orange"
             class="text-white"
             label="UTILIZAR ESTA ROTA"
+            @click="info.visivel = false; info.navega = true"
+            v-close-popup
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog seamless v-model="info.navega" :position="info.position">
+      <q-card style="width: 350px">
+        <q-bar class="text-white" style="background:linear-gradient(to top, red, orange)">
+          <div>
+            <center>Como deseja iniciar sua rota?</center>
+          </div>
+        </q-bar>
+        <q-card-section>
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <center>
+                <img alt="Meu Trecho" src="statics/img/maps.svg" style="width: 6em" @click="info.navega = false; info.viagem = true">
+              </center>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <center>
+                <img alt="Meu Trecho" src="statics/img/waze.svg" style="width: 4.8em" @click="info.navega = false; info.viagem = true">
+              </center>
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-actions class="row items-center no-wrap">
+          <q-btn
+            outline
+            color="red"
+            class="text-black full-width"
+            label="VER OUTRA ROTA"
+            v-close-popup
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog seamless v-model="info.viagem" :position="info.position">
+      <q-card style="width: 350px">
+        <q-bar class="text-white" style="background:linear-gradient(to top, red, orange)">
+          <div>
+            <center>TENHA UMA BOA VIAGEM!</center>
+          </div>
+        </q-bar>
+        <q-card-section>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <center>
+                <p>AGRADECEMOS POR UTILIZAR O NOSSO APLICATIVO!</p>
+              </center>
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-actions class="row items-center no-wrap">
+          <q-btn
+            outline
+            color="red"
+            class="text-black full-width"
+            label="VOLTAR PARA O MAPA"
+            v-close-popup
           />
         </q-card-actions>
       </q-card>
@@ -118,24 +179,18 @@
           v-for="marca in markers"
           :key="marca.uf"
           :lat-lng="marca.latlong"
-          :icon="getIcone(marca.stfalha, marca.stdegradacao, marca.stdesconhecido)"
+          :icon="getIcone(marca.stsucesso, marca.stfalha, marca.stdegradacao, marca.stdesconhecido)"
         >
           <l-popup>
             <div @click="innerClick">
+              <div class="text-red text-h6 text-center" v-if="marca.titulo !== ''">
+                {{ marca.titulo }}<br>
+              </div>
               {{ marca.uf }}
               <q-list v-show="showParagraph">
                 <q-item>
                   <q-item-section>
-                    <q-item-label>Degradação</q-item-label>
-                  </q-item-section>
-                  <q-item-section side>
-                    <q-item-label caption>{{ marca.stdegradacao }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item>
-                  <q-item-section>
-                    <q-item-label>Desconhecido</q-item-label>
+                    <q-item-label>Buracos na via</q-item-label>
                   </q-item-section>
                   <q-item-section side>
                     <q-item-label caption>{{ marca.stdesconhecido }}</q-item-label>
@@ -144,7 +199,7 @@
                 <q-separator />
                 <q-item>
                   <q-item-section>
-                    <q-item-label>Falha</q-item-label>
+                    <q-item-label>Acidentes</q-item-label>
                   </q-item-section>
                   <q-item-section side>
                     <q-item-label caption>{{ marca.stfalha }}</q-item-label>
@@ -153,13 +208,24 @@
                 <q-separator />
                 <q-item>
                   <q-item-section>
-                    <q-item-label>Sucesso</q-item-label>
+                    <q-item-label>Posto de serviços</q-item-label>
                   </q-item-section>
                   <q-item-section side >
                     <q-item-label caption>{{ marca.stsucesso }}</q-item-label>
                   </q-item-section>
                 </q-item>
               </q-list>
+              {{ marca.msg }}
+              <center class="q-pa-md">
+                <q-btn
+                  v-if="marca.titulo !== ''"
+                  @click="onOpen('r')"
+                  dense style="max-width: 200px; width: 200px;" color="red" label="+ VER MAIS"/>
+                <q-btn
+                  v-if="marca.titulo === ''"
+                  @click="onOpen('g')"
+                  dense style="max-width: 200px; width: 200px;" color="green" label="+ VER MAIS"/>
+              </center>
             </div>
           </l-popup>
         </l-marker>
@@ -210,7 +276,9 @@ export default {
           total: '619,28'
         },
         visivel: false,
-        position: 'bottom'
+        position: 'bottom',
+        navega: false,
+        viagem: false
       },
       lineColor: {
         styles: [
@@ -257,29 +325,30 @@ export default {
         zoomControl: false
       },
       showMap: true,
+      // Marcadores do mapa
       markers: [],
       // eslint-disable-next-line no-undef
       iconSucesso: L.icon({
         iconUrl: 'statics/map/sucesso.png',
-        iconSize: [38, 50],
+        iconSize: [30, 40],
         popupAnchor: [0, -5]
       }),
       // eslint-disable-next-line no-undef
       iconFalha: L.icon({
         iconUrl: 'statics/map/falha.png',
-        iconSize: [38, 50],
+        iconSize: [30, 40],
         popupAnchor: [0, -5]
       }),
       // eslint-disable-next-line no-undef
       iconDegradacao: L.icon({
         iconUrl: 'statics/map/degradacao.png',
-        iconSize: [38, 50],
+        iconSize: [30, 40],
         popupAnchor: [0, -5]
       }),
       // eslint-disable-next-line no-undef
       iconDesconhecido: L.icon({
         iconUrl: 'statics/map/desconhecido.png',
-        iconSize: [38, 50],
+        iconSize: [30, 40],
         popupAnchor: [0, -5]
       })
     }
@@ -287,21 +356,63 @@ export default {
   watch: {
     //
   },
+  mounted () {
+    this.onAlimentaMarker()
+  },
   methods: {
+    onAlimentaMarker () {
+      const dadosok = []
+      const itndata = {
+        uf: 'Av Senador Tancredo Neves - GO',
+        msg: 'Caminhoneiros marcaram esse trecho como perigoso!',
+        titulo: 'Cuidado!',
+        lat: Number(-16.086243),
+        long: Number(-47.986215),
+        latlong: latLng(Number(-16.086243), Number(-47.986215)),
+        stsucesso: Number(1),
+        stdegradacao: Number(2),
+        stfalha: Number(80),
+        stdesconhecido: Number(4)
+      }
+      dadosok.push(itndata)
+      const itndata2 = {
+        titulo: '',
+        uf: 'Posto Dom Pedro 99 - Km 447 - Cedrolândia, Caetanópolis - MG',
+        msg: 'Caminhoneiros marcaram esse local como seguro para descanso!',
+        lat: Number(-19.2994402),
+        long: Number(-44.3800169),
+        latlong: latLng(Number(-19.2994402), Number(-44.3800169)),
+        stsucesso: Number(50),
+        stdegradacao: Number(2),
+        stfalha: Number(0),
+        stdesconhecido: Number(4)
+      }
+      dadosok.push(itndata2)
+      const itndata3 = {
+        titulo: '',
+        uf: 'Posto Brandão - R. Olímpio Martins de Araújo, João Pinheiro - MG',
+        msg: 'Caminhoneiros marcaram esse local como seguro para descanso!',
+        lat: Number(-17.7381923),
+        long: Number(-46.187483),
+        latlong: latLng(Number(-17.7381923), Number(-46.187483)),
+        stsucesso: Number(20),
+        stdegradacao: Number(2),
+        stfalha: Number(2),
+        stdesconhecido: Number(4)
+      }
+      dadosok.push(itndata3)
+      this.markers = dadosok
+    },
     onSumary (val) {
       this.info.kmtempo = val
     },
     onAbreCusto () {
       this.info.visivel = true
     },
-    getIcone (falha, degradacao, desconhecido) {
-      if (falha > 0) {
-        return this.iconFalha
-      } else if (degradacao > 0) {
-        return this.iconDegradacao
-      } else if (desconhecido > 0) {
-        return this.iconDesconhecido
-      } else return this.iconSucesso
+    getIcone (sucesso, falha) {
+      if (sucesso > falha) {
+        return this.iconSucesso
+      } else return this.iconFalha
     },
     zoomUpdate (zoom) {
       this.currentZoom = zoom
@@ -314,6 +425,13 @@ export default {
     },
     innerClick () {
       //
+    },
+    onOpen (tipo) {
+      if (tipo === 'r') {
+        this.$router.push('/vermelho')
+      } else {
+        this.$router.push('/verde')
+      }
     }
   },
   computed: {

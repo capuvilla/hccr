@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$router.push('/')
+      this.$router.push('/truck')
     }
   }
 }
