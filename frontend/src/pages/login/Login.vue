@@ -2,7 +2,10 @@
   <q-page class="bg-image text-white">
     <q-page class="flex flex-center">
       <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="q-gutter-md">
-        <img alt="Meu Trecho" src="statics/img/logo.png">
+        <center>
+          <!-- <img alt="Meu Trecho" src="statics/img/logo.png" style="width: 10em"> -->
+          <img alt="Meu Trecho" src="statics/img/logo.png">
+        </center>
         <div>
           <q-input color="black" bg-color="white" outlined bottom-slots dense v-model="usuario" label="Login"></q-input>
           <q-input color="black" bg-color="white" outlined dense v-model="password" label="Senha" :type="isPwd ? 'password' : 'text'">
@@ -55,7 +58,7 @@ export default {
     content: ' ';
     display: block;
     position: absolute;
-    opacity: 0.5;
+    opacity: 0.6;
     background: url('/statics/img/fundo.jpg');
     width: 100%;
     height: 100%;

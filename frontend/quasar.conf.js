@@ -55,6 +55,8 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
 
+      htmlFilename: ctx.dev ? 'index.html' : 'index.php',
+
       // Add dependencies for transpiling with Babel (Array of regexes)
       // (from node_modules, which are by default not transpiled).
       // Does not applies to modern builds.
