@@ -1,27 +1,5 @@
 <template>
-  <q-page style="background: #E5E5E5">
-    <div class="q-pa-md">
-        <q-header elevated class="bg-white">
-          <q-toolbar class="flex justify-between">
-            <q-btn color="deep-orange" flat @click="drawerLeft = !drawerLeft" round dense icon="menu" />
-            <img alt="Meu Trecho" src="statics/img/Color.jpg">
-          </q-toolbar>
-        </q-header>
-        <q-drawer
-          v-model="drawerLeft"
-          show-if-above
-          :width="200"
-          :breakpoint="700"
-          elevated
-          content-class="bg-primary text-white"
-        >
-          <q-scroll-area class="fit">
-            <div class="q-pa-sm">
-              <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
-            </div>
-          </q-scroll-area>
-        </q-drawer>
-    </div>
+  <q-page class="bg-grey-3">
     <div>
       <div class="p-container full-width">
         <p class="p-text text-center">Quantos eixos tem o seu caminhão?</p>
@@ -45,7 +23,7 @@
           filled
           bottom-slots
           dense
-          value='2,4 Km/L'
+          v-model="km"
         />
       </div>
       <div class="full-width flex justify-center" >
@@ -58,7 +36,7 @@
           filled
           bottom-slots
           dense
-          value='2,4 Km/L'
+          v-model="combustivel"
         />
       </div>
       <div class="flex justify-center full-width">
@@ -68,10 +46,9 @@
       <div class="flex justify-center full-width">
         <q-btn
           class='glossy'
-          rounded
           color='deep-orange'
           label='PRÓXIMO'
-          type='submit'
+          @click="onSubmit"
           style="width: 40%; letter-spacing: 1.25px; font-size: 14px; line-height: 16px; font-weight: 600;"
         />
       </div>
@@ -84,12 +61,14 @@ export default {
   data () {
     return {
       drawerLeft: false,
-      checkbox: false
+      checkbox: false,
+      km: 4,
+      combustivel: 2.38
     }
   },
   methods: {
     onSubmit () {
-      this.$router.push('/mapa/')
+      this.$router.push('/mapa')
     }
   }
 }

@@ -5,10 +5,16 @@ const routes: RouteConfig[] = [
     path: '/',
     component: () => import('layouts/MainLogin.vue'),
     children: [
-      { path: '', component: () => import('pages/login/Login.vue') },
+      { path: '', component: () => import('pages/login/Inicial.vue') },
       { path: 'login', component: () => import('pages/login/Login.vue') },
-      { path: 'register', component: () => import('pages/register/Register.vue') },
-      { path: 'truck', component: () => import('pages/truck/Truck.vue') }
+      { path: 'register', component: () => import('pages/register/Register.vue') }
+    ]
+  },
+  {
+    path: '/truck',
+    component: () => import('layouts/MainLayoutAll.vue'),
+    children: [
+      { path: '', component: () => import('pages/truck/Truck.vue') }
     ]
   },
   {
