@@ -7,20 +7,14 @@
             <q-input
               class="mobile-only"
               style="max-width: 220px"
-              color="black"
-              bg-color="white"
-              rounded standout
-              dense
+              color="black" bg-color="white" rounded outlined dense
               v-model="origem"
               label="Origem">
             </q-input>
             <q-input
               class="desktop-only"
               style="max-width: 500px"
-              color="black"
-              bg-color="white"
-              rounded standout
-              dense
+              color="black" bg-color="white" rounded outlined dense
               v-model="origem"
               label="Origem">
             </q-input>
@@ -29,20 +23,14 @@
             <q-input
               class="mobile-only"
               style="max-width: 220px"
-              color="black"
-              bg-color="white"
-              rounded standout
-              dense
+              color="black" bg-color="white" rounded outlined dense
               v-model="destino"
               label="Destino">
             </q-input>
             <q-input
               class="desktop-only"
               style="max-width: 500px"
-              color="black"
-              bg-color="white"
-              rounded standout
-              dense
+              color="black" bg-color="white" rounded outlined dense
               v-model="destino"
               label="Destino">
             </q-input>

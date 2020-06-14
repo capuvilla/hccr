@@ -8,8 +8,8 @@
       <div class="q-pa-xl">
         <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="q-gutter-md">
           <div>
-            <q-input color="black" bg-color="white" outlined bottom-slots dense v-model="origem" label="Origem"></q-input>
-            <q-input color="black" bg-color="white" outlined bottom-slots dense v-model="destino" label="Destino"></q-input>
+            <q-input color="black" bg-color="white" rounded standout bottom-slots dense v-model="origem" label="Origem"></q-input>
+            <q-input color="black" bg-color="white" rounded standout bottom-slots dense v-model="destino" label="Destino"></q-input>
             <q-btn class="glossy full-width" rounded color="deep-orange" label="CALCULAR" type="submit"/>
           </div>
         </form>
