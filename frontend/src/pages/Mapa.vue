@@ -1,5 +1,37 @@
 <template>
   <q-page class="window-height full-height">
+    <q-dialog seamless v-model="info.visivel" :position="info.position">
+      <q-card style="width: 350px">
+        <q-bar class="text-white" style="background:linear-gradient(to top, red, orange)">
+          <q-icon name="o_local_shipping" style="font-size: 2.4em;" />
+          <div>Total da viagem</div>
+          <q-space />
+          <div>R$ {{ info.custos.total }}</div>
+        </q-bar>
+        <q-card-section>
+          <Custo
+            :kmtempo="info.kmtempo"
+            :custos="info.custos"
+            :visivel="info.visivel"
+          />
+        </q-card-section>
+        <q-card-actions class="row items-center no-wrap">
+          <q-btn
+            outline
+            color="red"
+            class="text-black"
+            label="VER OUTRA ROTA"
+            v-close-popup
+          />
+          <q-space />
+          <q-btn
+            color="deep-orange"
+            class="text-white"
+            label="UTILIZAR ESTA ROTA"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <div class="fixed-top vertical-middle q-pa-sm" style="z-index: 500">
       <center>
         <div class="q-pa-sm row q-col-gutter-sm" style="max-width: 760px">
@@ -7,14 +39,14 @@
             <q-input
               class="mobile-only"
               style="max-width: 220px"
-              color="black" bg-color="white" rounded outlined dense
+              color="black" bg-color="white" outlined dense
               v-model="origem"
               label="Origem">
             </q-input>
             <q-input
               class="desktop-only"
               style="max-width: 500px"
-              color="black" bg-color="white" rounded outlined dense
+              color="black" bg-color="white" outlined dense
               v-model="origem"
               label="Origem">
             </q-input>
@@ -23,14 +55,14 @@
             <q-input
               class="mobile-only"
               style="max-width: 220px"
-              color="black" bg-color="white" rounded outlined dense
+              color="black" bg-color="white" outlined dense
               v-model="destino"
               label="Destino">
             </q-input>
             <q-input
               class="desktop-only"
               style="max-width: 500px"
-              color="black" bg-color="white" rounded outlined dense
+              color="black" bg-color="white" outlined dense
               v-model="destino"
               label="Destino">
             </q-input>
@@ -43,15 +75,17 @@
         <q-btn
           class="mobile-only glossy"
           style="max-width: 200px; width: 120px;"
-          rounded
           color="deep-orange"
-          label="VER CUSTO"/>
+          label="VER CUSTO"
+          @click="onAbreCusto"
+          />
         <q-btn
           class="desktop-only glossy"
           style="max-width: 200px; width: 200px;"
-          rounded
           color="deep-orange"
-          label="VER CUSTO"/>
+          label="VER CUSTO"
+          @click="onAbreCusto"
+          />
       </center>
     </div>
     <l-map
@@ -77,6 +111,7 @@
       <l-routing-machine
         :waypoints="waypoints"
         :lineOptions="lineColor"
+        @retsumary="onSumary"
       />
       <v-marker-cluster>
         <l-marker
@@ -141,6 +176,7 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import LRoutingMachine from '../components/LRoutingMachine'
+import Custo from '../components/Custo'
 
 delete Icon.Default.prototype._getIconUrl
 Icon.Default.mergeOptions({
@@ -159,12 +195,23 @@ export default {
     'v-marker-cluster': Vue2LeafletMarkerCluster,
     LControlZoom,
     LControlLayers,
-    'l-routing-machine': LRoutingMachine
+    'l-routing-machine': LRoutingMachine,
+    Custo
   },
   data () {
     return {
       origem: 'Brasilia',
       destino: 'Belo Horizonte',
+      info: {
+        kmtempo: {},
+        custos: {
+          combustivel: '492,08',
+          pedagio: '127,20',
+          total: '619,28'
+        },
+        visivel: false,
+        position: 'bottom'
+      },
       lineColor: {
         styles: [
           { color: 'black', opacity: 0.15, weight: 9 },
@@ -241,6 +288,12 @@ export default {
     //
   },
   methods: {
+    onSumary (val) {
+      this.info.kmtempo = val
+    },
+    onAbreCusto () {
+      this.info.visivel = true
+    },
     getIcone (falha, degradacao, desconhecido) {
       if (falha > 0) {
         return this.iconFalha

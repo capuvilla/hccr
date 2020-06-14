@@ -7,8 +7,8 @@
           <img alt="Meu Trecho" src="statics/img/logo.png">
         </center>
         <div>
-          <q-input color="black" bg-color="white" rounded outlined dense bottom-slots v-model="usuario" label="Login"></q-input>
-          <q-input color="black" bg-color="white" rounded outlined dense v-model="password" label="Senha" :type="isPwd ? 'password' : 'text'">
+          <q-input color="black" bg-color="white" outlined dense bottom-slots v-model="usuario" label="Login"></q-input>
+          <q-input color="black" bg-color="white" outlined dense v-model="password" label="Senha" :type="isPwd ? 'password' : 'text'">
             <template v-slot:append>
               <q-icon
                 :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -20,10 +20,10 @@
           <a dense color="white" class="text-white" style="cursor: pointer" @click="cdsenha()">Esqueceu sua senha?</a>
         </div>
         <div>
-          <q-btn class="glossy full-width" rounded color="deep-orange" label="ENTRAR" type="submit"/>
+          <q-btn class="glossy full-width" color="deep-orange" label="ENTRAR" type="submit"/>
           <br>
           <br>
-          <q-btn class="full-width text-red" rounded color="white" label="Faça seu cadastro" @click="onRegister"/>
+          <q-btn class="full-width text-red" color="white" label="Faça seu cadastro" @click="onRegister"/>
         </div>
       </form>
     </q-page>
