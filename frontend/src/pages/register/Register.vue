@@ -74,7 +74,6 @@
         <div>
           <q-btn
             class='glossy full-width'
-            rounded
             color='deep-orange'
             label='CADASTRAR'
             type='submit'
