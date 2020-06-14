@@ -1,50 +1,40 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page>
+    <q-parallax :height="150">
+      <img alt="Meu Trecho" src="statics/img/gmaps.png">
+    </q-parallax>
+    <div class="q-pa-sm">
+      <p class="text-h5">Para onde vamos?</p>
+      <div class="q-pa-xl">
+        <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="q-gutter-md">
+          <div>
+            <q-input color="black" bg-color="white" outlined bottom-slots dense v-model="origem" label="Origem"></q-input>
+            <q-input color="black" bg-color="white" outlined bottom-slots dense v-model="destino" label="Destino"></q-input>
+            <q-btn class="glossy full-width" rounded color="deep-orange" label="CALCULAR" type="submit"/>
+          </div>
+        </form>
+      </div>
+    </div>
   </q-page>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-import ExampleComponent from 'components/CompositionComponent.vue'
-import { Todo, Meta } from 'components/models'
-
-export default Vue.extend({
+<script>
+export default {
   name: 'PageIndex',
-  components: { ExampleComponent },
   data () {
-    const todos: Todo[] = [
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ]
-    const meta: Meta = {
-      totalCount: 1200
+    return {
+      origem: '',
+      destino: ''
     }
-    return { todos, meta }
+  },
+  methods: {
+    onReset () {
+      this.origem = ''
+      this.destino = ''
+    },
+    onSubmit () {
+      this.$router.push('/mapa/')
+    }
   }
-})
+}
 </script>
