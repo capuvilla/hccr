@@ -24,7 +24,18 @@ const routes: RouteConfig[] = [
     path: '/mapa',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/Mapa.vue') }]
+  },
+  {
+    path: '/info',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/info/Info.vue') }]
+  },
+  {
+    path: '/reports',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/reports/Reports.vue') }]
   }
+
 ]
 
 // Always leave this as last one
