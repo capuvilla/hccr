@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="text-red">
       <q-toolbar>
         <q-btn
           flat
@@ -12,18 +12,35 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <img alt="Meu Trecho" src="statics/img/logop.svg">
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>
+          <q-btn flat dense round @click="onLogout" aria-label="Logout">
+            <q-icon name="logout" title="Logout" />
+          </q-btn>
+          <q-btn flat dense round
+            @click="onfullScreen" aria-label="FullScreen">
+            <q-icon
+            :name="this.fullScreen ? 'expand' : 'expand'"
+            :title="this.fullScreen ? 'Contrair' : 'Expandir'" />
+          </q-btn>
+          <q-btn
+            :icon="$q.dark.isActive ? 'mdi-brightness-5' : 'mdi-brightness-4'"
+            flat
+            dense
+            round
+            @click="$q.dark.isActive ? $q.dark.set(false) : $q.dark.set(true)"
+            no-caps
+          />
+        </div>
+
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
+      elevated
     >
       <q-list>
         <q-item-label
@@ -103,6 +120,17 @@ export default {
           link: 'https://awesome.quasar.dev'
         }
       ]
+    }
+  },
+
+  methods: {
+    onfullScreen: function () {
+      this.fullScreen = !this.fullScreen
+      if (this.fullScreen) {
+        this.$q.fullscreen.request()
+      } else {
+        this.$q.fullscreen.exit()
+      }
     }
   }
 }

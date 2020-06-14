@@ -40,8 +40,8 @@ module.exports = configure(function (ctx) {
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
-      // 'mdi-v5',
-      // 'fontawesome-v5',
+      'mdi-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -106,10 +106,20 @@ module.exports = configure(function (ctx) {
       all: 'auto',
 
       components: [],
-      directives: [],
+      directives: [
+        'ClosePopup'
+      ],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'AppFullscreen',
+        'Notify',
+        'Cookies',
+        'Loading',
+        'LocalStorage',
+        'SessionStorage',
+        'Dialog'
+      ]
     },
 
     // animations: 'all', // --- includes all animations
