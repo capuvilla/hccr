@@ -74,10 +74,6 @@
             :url="tileProvider.url"
             :attribution="tileProvider.attribution"
             layer-type="base"/>
-      <l-routing-machine
-        :waypoints="waypoints"
-        :lineOptions="lineColor"
-      />
       <v-marker-cluster>
         <l-marker
           v-for="marca in markers"
@@ -140,7 +136,6 @@ import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
-import LRoutingMachine from '../components/LRoutingMachine'
 
 delete Icon.Default.prototype._getIconUrl
 Icon.Default.mergeOptions({
@@ -158,20 +153,12 @@ export default {
     LPopup,
     'v-marker-cluster': Vue2LeafletMarkerCluster,
     LControlZoom,
-    LControlLayers,
-    'l-routing-machine': LRoutingMachine
+    LControlLayers
   },
   data () {
     return {
       origem: 'Brasilia',
       destino: 'Belo Horizonte',
-      lineColor: {
-        styles: [
-          { color: 'black', opacity: 0.15, weight: 9 },
-          { color: 'white', opacity: 0.8, weight: 6 },
-          { color: 'blue', opacity: 1, weight: 2 }
-        ]
-      },
       mapa: {
         mod: true,
         visible: true,
@@ -199,10 +186,6 @@ export default {
         }
       ],
       withPopup: latLng(-22.8331459, -47.2630796),
-      waypoints: [
-        latLng(-15.721387, -48.0774459),
-        latLng(-19.9023386, -44.1041379)
-      ],
       currentZoom: 4,
       showParagraph: true,
       mapOptions: {

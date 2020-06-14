@@ -11,10 +11,10 @@ const routes: RouteConfig[] = [
     ]
   },
   {
-    path: '/',
+    path: '/mapa',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: 'mapa', component: () => import('pages/Mapa.vue') }
+      { path: '', component: () => import('pages/Mapa.vue') }
     ]
   }
 ]
