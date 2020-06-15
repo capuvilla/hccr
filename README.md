@@ -1,5 +1,3 @@
-![](sample/logo.png)
-
 # Meu Trecho
 Projeto criado durante o HACKATHON CCR:
 BOAS IDEIAS A CAMINHO.
@@ -41,8 +39,8 @@ http://quasar.dev
 >- Marcia 
 
 > DEV:
->- Capuvilla 
->- Renan 
+>- Capuvilla (Renan)
+>- Renan (Souza)
 >- Ernandes 
 
 ---------------------------------------
