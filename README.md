@@ -4,3 +4,5 @@ BOAS IDEIAS A CAMINHO.
 
 ---------------------------------------
 
+![](sample/p1.png)
+![](sample/p2.png)
