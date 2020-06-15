@@ -31,10 +31,12 @@ http://quasar.dev
 ## Equipe Hackathon CCR
 
 > UX:
->- Carol
+>- Carol 
+
 > Business:
->- Marcia
+>- Marcia 
+
 > DEV:
->- Capuvilla
->- Renan
->- Ernandes
+>- Capuvilla 
+>- Renan 
+>- Ernandes 
