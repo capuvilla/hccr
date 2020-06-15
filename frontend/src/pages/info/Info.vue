@@ -1,7 +1,7 @@
 <template>
   <q-page style="background: #E5E5E5">
     <div class="back-container" >
-      <img alt="Meu Trecho" src="statics/img/arrow_back_24px.svg">
+      <img alt="Meu Trecho" src="statics/img/arrow_back_24px.svg" @click="onMapa">
     </div>
     <div class="flex justify-center items-center">
 
@@ -19,6 +19,7 @@
     <div class="full-width">
       <div class="flex justify-center container-button full-width">
         <q-btn
+          @click="onReport"
           class='glossy'
           rounded
           color='deep-orange'
@@ -41,8 +42,16 @@ export default {
         { label: 'Roubos', value: 'roubo', color: 'deep-orange' },
         { label: 'Pessoas ', value: 'friend', color: 'deep-orange' },
         { label: 'Postos sem estrutura', value: 'postos', color: 'deep-orange' },
-        { label: 'Combustível de origem duvidosa', value: 'postos', color: 'deep-orange' }
+        { label: 'Combustível de origem duvidosa', value: 'combustivel', color: 'deep-orange' }
       ]
+    }
+  },
+  methods: {
+    onMapa () {
+      this.$router.push('/mapa')
+    },
+    onReport () {
+      this.$router.push('/report')
     }
   }
 }

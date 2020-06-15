@@ -7,33 +7,19 @@ const routes: RouteConfig[] = [
     children: [
       { path: '', component: () => import('pages/login/Inicial.vue') },
       { path: 'login', component: () => import('pages/login/Login.vue') },
-      { path: 'register', component: () => import('pages/register/Register.vue') }
-    ]
-  },
-  {
-    path: '/',
-    component: () => import('layouts/MainLogin.vue'),
-    children: [
+      { path: 'register', component: () => import('pages/register/Register.vue') },
       { path: 'truck', component: () => import('pages/truck/Truck.vue') },
+      { path: 'report', component: () => import('pages/reports/Reports.vue') },
       { path: 'agradece', component: () => import('pages/point/Agradece.vue') },
-      { path: 'verde', component: () => import('pages/point/Agradece.vue') },
-      { path: 'vermelho', component: () => import('pages/point/Agradece.vue') }
+      { path: 'verde', component: () => import('pages/info/Info.vue') },
+      { path: 'vermelho', component: () => import('pages/info/Info.vue') },
+      { path: 'info', component: () => import('pages/info/Info.vue') }
     ]
   },
   {
     path: '/mapa',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/Mapa.vue') }]
-  },
-  {
-    path: '/info',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/info/Info.vue') }]
-  },
-  {
-    path: '/reports',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/reports/Reports.vue') }]
   }
 
 ]

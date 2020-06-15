@@ -1,7 +1,7 @@
 <template>
-  <q-page style="background: #E5E5E5">
+  <q-page class="bg-grey-3">
     <div class="back-container" >
-      <img alt="Meu Trecho" src="statics/img/arrow_back_24px.svg">
+      <img alt="Meu Trecho" src="statics/img/arrow_back_24px.svg" @click="onMapa">
     </div>
     <div class="flex justify-center items-center">
       <div class="flex justify-center full-width container-text">
@@ -18,6 +18,7 @@
     <div class="full-width">
       <div class="flex justify-center container-button full-width">
         <q-btn
+          @click="onAgradece"
           class='glossy'
           rounded
           color='deep-orange'
@@ -44,6 +45,14 @@ export default {
         { label: 'Buracos ', value: 'postos', color: 'deep-orange' }
       ]
     }
+  },
+  methods: {
+    onMapa () {
+      this.$router.push('/mapa')
+    },
+    onAgradece () {
+      this.$router.push('/agradece')
+    }
   }
 }
 </script>
@@ -60,7 +69,7 @@ export default {
     left: 3.89%;
     right: 82.48%;
     top: 3.28%;
-    bottom: 89.06%;
+    bottom: 50.06%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 4px 5px rgba(0, 0, 0, 0.14);
   }
   .q-option-group {
@@ -68,6 +77,7 @@ export default {
     width: 90%;
     background: #ffffff;
     top: 25%;
+    height: 22em;
     border-radius: 20px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 4px 5px rgba(0, 0, 0, 0.14);
     letter-spacing: 0.15px;
