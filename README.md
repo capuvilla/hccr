@@ -28,6 +28,8 @@ http://quasar.dev
 
 ---------------------------------------
 
+![](sample/equipe.png)
+
 ## Equipe Hackathon CCR
 
 > UX:
