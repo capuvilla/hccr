@@ -25,3 +25,16 @@ http://quasar.dev
 > Mapa
 >- Leafletjs
 >- Openstreetmap
+
+---------------------------------------
+
+## Equipe Hackathon CCR
+
+> UX:
+>- Carol
+> Business:
+>- Marcia
+> DEV:
+>- Capuvilla
+>- Renan
+>- Ernandes
