@@ -45,4 +45,4 @@ http://quasar.dev
 
 ## Prototipo
 
-https://www.figma.com/proto/WqjtPeLI0doXzRQ4Mzjwrl/CCR?node-id=137%3A529&scaling=scale-down
+https://www.figma.com/proto/WqjtPeLI0doXzRQ4Mzjwrl/CCR?node-id=137%3A848&scaling=scale-down
