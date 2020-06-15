@@ -6,7 +6,7 @@
 
 <script>
 import L from 'leaflet'
-import { IRouter, IGeocoder, LineOptions, IRouteSummary } from 'leaflet-routing-machine'
+import { IRouter, IGeocoder, LineOptions } from 'leaflet-routing-machine'
 import { findRealParent } from 'vue2-leaflet'
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
 
