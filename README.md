@@ -4,8 +4,8 @@ BOAS IDEIAS A CAMINHO.
 
 ---------------------------------------
 
--> ![](sample/p1.png) <-
--> ![](sample/p2.png) <-
+![](sample/p1.png)
+![](sample/p2.png)
 
 ---------------------------------------
 
@@ -28,7 +28,7 @@ http://quasar.dev
 
 ---------------------------------------
 
--> ## Equipe Hackathon CCR <-
+## Equipe Hackathon CCR
 
 > UX:
 >- Carol 
