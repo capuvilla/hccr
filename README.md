@@ -5,8 +5,11 @@ BOAS IDEIAS A CAMINHO.
 ---------------------------------------
 
 O Meu Trecho, vai conduzir o caminhoneiro a uma jornada de novas experiencias, como poder ajudar sua comunidade a saber o que esta acontecendo na estrada, e utilizando dessas informações tanto de perigo quanto de locais bons para suas refeições, descanso e até mesmo para abastecimento.
+
 Ele conta com uma calculado de custo de viagem, que da a quantidade de KM a ser percorrido, custos de combustível e pedágio.
 Nosso usuário pode ainda enviar sua rota para aplicativos que ele já tenha afinidade, com todas as informações que só o Meu Trecho trás.
+
+MEU TRECHO, auxiliando você a voltar para casa em segurança.
 
 ---------------------------------------
 
