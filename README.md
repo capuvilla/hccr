@@ -9,10 +9,10 @@ BOAS IDEIAS A CAMINHO.
 
 ---------------------------------------
 
-
 ## Dependencias para desenvolvimento
 
-> Necessário NodeJS
+> Necessário quasar cli
+http://quasar.dev
 
 ## Tecnologias
 
